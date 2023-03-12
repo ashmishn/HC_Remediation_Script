@@ -1,0 +1,94 @@
+## Note: The script is only for Redhat Linux (RHEL7 and RHEL8). You can try in CentOS and Oracle Linux with proper verification of the parameters.
+
+####### Linux Parameters Settings ########
+
+##Provide the Change Number to take configuration backup of files which will be modified during the HC remediation activity
+CHNG_NUMBER	CHGNAxxxxxx
+
+##### Password Settings  #####
+
+## Minimum number of days allowed between password changes (AD.1.1.3.1)
+PASS_MIN_DAYS	1    
+
+## Maximum number of days a password may be used(password expiry days) (AD.1.1.1.1,AD.1.1.1.2)
+PASS_MAX_DAYS	90  	
+
+## Minimum acceptable password length
+PASS_MIN_LENGTH	15   	
+
+## Log rotate value in weeks to set in /etc/logrotate.conf
+LOG_ROTATE 	13
+
+## If you want to change the UMASK value in files 
+
+## Umask value to set in /etc/login.defs	
+UMASK_VAL	077
+
+## Umask value to set in /etc/bashrc	
+UMASK_BASHRC_VAL	077
+
+####### User's Password complexity values to set in /etc/pam.d/pasword-auth and /etc/pam.d/system-auth #######
+
+## Minimum number of digits should be added in the password. Here it is set as 1 numeric value to set in password
+DIGIT		-1 
+
+## Minimum number of upper case characters should be added in the password. Here it is set as 1 upper case character	
+UPPER_CASE	0
+
+## Minimum number of lower case characters should be added in the password. Here it is set as 1 lower case character	
+LOWER_CASE	-1 
+
+## Minimum number of special characters should be added in the password. Here it is set as 0 to have no special character	
+OTHER_CHAR	0
+
+## To Prevent reuse of last eight passwords value. Here it is 7 previous password + user current password, total 8	
+PAM_REMEMBER	8
+
+
+### Non Expiry Password Settings ###
+
+## Local user ID's to set as never expire and should be part of exception template. Please put the ID's separated by comma.
+NON_EXPIRY_ID: user1,user2
+
+
+### Files and Dir's others write permission change Settings ###
+
+## If you want to remove other's write permission from files and dir's on below direcories by mentioning below "yes" or "no" in lowercase.
+
+OPT_PERM_CHNG: yes
+ETC_PERM_CHNG: yes
+VAR_PERM_CHNG: yes 
+TMP_PERM_CHNG: yes
+USR_LOCAL_PERM_CHNG: yes
+
+## If you want to apply stickybit on directories having write pemission
+STICKY_BIT_SET	yes
+
+
+##### Network Settings #######
+
+NFS_USE: yes
+FTP_USE: yes
+LDAP_USE: no
+SQUID_PROXY_USE: no
+DNS_SERVER_USE: no
+HTTP_USE: no
+SAMBA_USE: no
+TELNET_USE: no
+TELNET_SERVER_USE: no
+
+####### SSH Parameters Settings ########  	
+
+## System parameter values in /etc/ssh/sshd_config. These are default values except PERMITROOTLOGIN, please change if any change in agreed values in SSH techspec.
+PERMITROOTLOGIN		yes
+PERMITUSERENVIRONMENT	no
+TCPKEEPALIVE		yes
+MAXSTARTUPS		100
+MAXAUTHTRIES		5
+LOGINGRACETIME		120
+KEYREGENERATIONINTERVAL	3600
+PERMITEMPTYPASSWORDS	no
+LOGLEVEL		INFO
+GATEWAYPORTS		no
+STRICTMODES		yes
+PRINTMOTD		yes
